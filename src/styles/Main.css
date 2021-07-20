@@ -216,7 +216,4 @@ p {
   .hamburger {
     display: flex;
   }
-  .topnav {
-    justify-content: space-between;
-  }
 } 

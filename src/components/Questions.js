@@ -23,7 +23,7 @@ const Questions = ({course}) => {
             setQuestions(res.doc)
             setLoading(false)
         })
-    }, [])
+    }, [code])
 
     const nextFunction = () => {
         if (count < questions.length - 1) {
