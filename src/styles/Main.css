@@ -35,7 +35,6 @@ p {
   margin-right: 2rem;
 }
 .step {
-  height: 400px;
   padding: 15px;
   flex-basis: 45%;
   display: flex;
