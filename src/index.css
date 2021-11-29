@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;700;900&family=Rubik:wght@300;400;600;700;800;900&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  font-family: "Rubik", sans-serif;
+  box-sizing: border-box;
+}
+.loginHeader {
+  font-family: "Lato", sans-serif;
+}
+.homepage {
+  background-image: url("./svg/homepage.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #fff;
+  min-height: 100vh;
+}
+.jumbotron {
+  min-height: 90vh;
+}
+.homepage__nav {
+  height: 10vh;
+}
+.jumbotron__image {
+  flex: 0.45;
+}
+.jumbotron__text {
+  flex: 0.55;
+}
+.dashboard__mdicon,
+.profile__avatar {
+  display: none !important;
+}
+@media screen and (max-width: 999px) {
+  .nav {
+    flex: 0.2;
+  }
+  .dashboard {
+    flex: 0.8;
+  }
+}
+@media screen and (max-width: 768px) {
+  .dashboard__mdicon,
+  .profile__avatar {
+    display: block !important;
+  }
+  .jumbotron {
+    flex-direction: column;
+  }
+  .loginBtn {
+    width: 100%;
+  }
+  .answer {
+    font-size: 14px;
+  }
+  .jumbotron__image,
+  .jumbotron__text,
+  .nav,
+  .dashboard,
+  .login__container,
+  .questions__details div,
+  .questions__details form {
+    flex: 1;
+  }
+  .svg__container,
+  .dashboard__icon,
+  .nav,
+  .profile__name {
+    display: none;
+  }
+  .questions__details div,
+  .questions__details form,
+  .form__input,
+  .dashboard,
+  .course {
+    width: 100%;
+  }
+  .questions__details div {
+    margin-bottom: 20px;
+  }
+
+  .course {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .modal {
+    width: 90% !important;
+  }
+  .questions__details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
