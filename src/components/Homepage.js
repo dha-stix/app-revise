@@ -1,30 +1,59 @@
-import React from 'react'
-import homepage from "../svg/signup.svg"
-import {Link} from "react-router-dom"
-const Homepage = () => {
+import React, {useEffect} from 'react'
+import logo from "../logo.png"
+import Darkmode from "../svgs/Darkmode"
+import Lightmode from "../svgs/Lightmode"
+import { useSelector, useDispatch } from 'react-redux'
+import { changeTheme } from "../redux/darktheme"
+import {signInWithPopup} from "firebase/auth";
+import {auth, provider} from "../utils/firebase";
+import { useNavigate } from 'react-router-dom';
+
+const HomePage = () => {
+    const darktheme = useSelector((state) => state.themeMode.value)
+    const dispatch = useDispatch()
+    const date = new Date().getFullYear()
+
+    let navigate = useNavigate();
+
+    useEffect(()=> {
+        const redirect = () => localStorage.getItem("token") ? navigate("/dashboard") : " "
+        redirect()
+    }, [navigate])
+
+    const signIn = () => {
+        try {
+            signInWithPopup(auth, provider)
+            .then((result) => {
+                localStorage.setItem("token", result._tokenResponse.idToken)
+                localStorage.setItem("purl", result.user.photoURL)
+                localStorage.setItem("id", result.user.displayName)
+                navigate("/dashboard")
+            }).catch(error => console.error(error));
+        }catch(err) {
+            alert("Kindly make sure you're connected to the internet")
+            console.error(err)
+            }
+        }
+
     return (
-        <>
-            <main className="homepage w-full">
-                <nav className="homepage__nav w-full flex items-center justify-between p-4">
-                    <h3 className="text-blue-900 text-xl">Revise </h3>
-                    {/* <Link to="/dev" className="py-2 px-3 bg-gray-100 rounded-lg outline-none border-none hover:shadow">Developer</Link> */}
-                </nav>
-                <section className="jumbotron flex items-center justify-between p-7 w-full">
-                    <div className="jumbotron__text mr-3">
-                        <h2 className="text-5xl mb-5">Reach for A!{" "}🎓</h2>
-                        <p className="text-white mb-2 ">
-                            With Revise, you can't settle for Average, your academic excellence is our priority.
-                        </p>
-                        <p className="mb-2">Don't settle for less, Learn with Revise, settle for Excellence!</p>
-                        <Link to="/login" className="py-3 px-4 bg-blue-600 text-gray-50 mt-8 rounded inline-block hover:shadow-lg"> GET STARTED</Link>
-                    </div>
-                    <div className="jumbotron__image p-4">
-                        <img src={homepage} alt="Revise Learning Platform" className="w-full"/>
-                    </div>
-                </section>
+        <div className={darktheme ? 'w-full h-screen bg-zinc-800'  :'w-full h-screen bg-zinc-50'}>
+            <nav className={darktheme ? 'h-[10vh] w-full flex items-center p-4 bg-zinc-800 justify-between' :'h-[10vh] w-full flex items-center p-4 bg-zinc-200 justify-between'}>
+                <img src={logo} alt="Revise Logo" className='w-14'/>
+                <div className='cursor-pointer' onClick={()=> dispatch(changeTheme())}>
+                    {darktheme ? <Lightmode/> : <Darkmode/>}
+                </div>  
+            </nav>
+            <main className='h-[75vh] w-full flex flex-col items-center justify-center'>
+                <p className='text-xl mb-7 text-zinc-500'>Welcome to Revise</p>
+                <button className='border w-[200px] text-zinc-500 py-3 hover:bg-zinc-800 hover:text-zinc-200'
+                onClick={signIn}>Sign in </button>
             </main>
-        </>
+            <footer className='h-[15vh] w-full text-zinc-500 items-center text-center flex flex-col border-t border-zinc-400 justify-center'>
+                <p className='text-sm mb-4'>Powered by David Asaolu</p>
+                <p className='text-sm'>Copyright {date}, Revise Learning Platform </p>
+            </footer>
+        </div>
     )
 }
 
-export default Homepage
+export default HomePage

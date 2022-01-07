@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import modeReducer from "./darkmode"
-
+import darkthemeReducer from './darktheme'
 export const store = configureStore({
   reducer: {
-    modeSwitch : modeReducer
+      themeMode: darkthemeReducer,
   },
 })

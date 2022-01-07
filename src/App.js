@@ -1,19 +1,16 @@
-import Login from "./components/Login";
+import HomePage from './components/HomePage';
 import {Route, Routes} from "react-router-dom"
-import Homepage from "./components/Homepage";
-import Dashboard from "./components/Dashboard";
-import QuestionsPage from "./components/QuestionsPage";
+import Dashboard from './components/Dashboard';
+import Question from './components/Question';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Routes>
-
-              <Route exact path="/" element={<Homepage/>}/>
-              <Route path="/login" element={<Login/>}/>
-              <Route path="/learn/:course" element={<QuestionsPage/>}/>     
-              <Route path="/dashboard" element={<Dashboard/>}/>
-              <Route path="*" element={<Homepage/>}/>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="dashboard" element={<Dashboard/>}/>
+        <Route path="question/:course" element={<Question/>}/>
+        <Route path="*" element={<HomePage/>}/>
       </Routes>
     </div>
   );
