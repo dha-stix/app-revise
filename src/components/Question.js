@@ -55,7 +55,7 @@ const Question = () => {
                 
                 {!questions[1] ? <p className='text-zinc-300'>Loading...Please wait{" "}🙏</p> : (
                     <>
-                        <p className='text-sm text-zinc-600 mb-10'>Questions left: 45</p>
+                        <p className='text-sm text-zinc-600 mb-10'>Questions left: {questions.length - (count + 1)}</p>
 
                         <p className={darktheme ? 'mb-14 text-zinc-400' : 'mb-14 text-zinc-800'}>{questions[count].question}</p>
 
