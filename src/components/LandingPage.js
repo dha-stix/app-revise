@@ -49,7 +49,7 @@ const LandingPage = () => {
                 onClick={signIn}>Sign in </button>
             </main>
             <footer className='h-[15vh] w-full text-zinc-500 items-center text-center flex flex-col border-t border-zinc-400 justify-center'>
-                <p className='text-sm mb-4'>Powered by David Asaolu</p>
+                <p className='text-sm mb-4'>Powered by {" "}<a href="https://www.linkedin.com/in/david-asaolu234/" target="_blank" rel="noreferrer">David Asaolu</a></p>
                 <p className='text-sm'>Copyright {date}, Revise Learning Platform </p>
             </footer>
         </div>
